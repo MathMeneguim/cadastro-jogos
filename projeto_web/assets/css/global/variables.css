@@ -1,0 +1,8 @@
+: root {
+	--cor-branca: #fff;
+
+}
+
+p {
+	color: var(--cor-branca);
+}

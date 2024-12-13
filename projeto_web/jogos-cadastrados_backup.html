@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogos Cadastrados</title>
+    <!-- Bootstrap CSS (via CDN) -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .grid-item {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            text-align: center;
+            padding: 20px;
+        }
+        .btn-crud {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Cadastro de Jogos</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Início</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Jogos Cadastrados</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Container com Grid -->
+    <div class="container my-5">
+        <h2 class="text-center mb-4">Jogos Cadastrados</h2>
+        <div class="row" id="games-list">
+            <!-- Os jogos serão inseridos aqui dinamicamente -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3">
+        <p>&copy; 2024 Cadastro de Jogos. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Bootstrap JS (via CDN) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let jogos = JSON.parse(localStorage.getItem("jogos")) || [];
+            let container = document.getElementById("games-list");
+
+            // Função para renderizar os jogos na página
+            function renderizarJogos() {
+                container.innerHTML = ""; // Limpar a lista antes de adicionar
+                jogos.forEach((jogo, index) => {
+                    let item = document.createElement("div");
+                    item.className = "col-lg-3 col-md-6 col-sm-12 p-2";
+                    item.innerHTML = `
+                        <div class="grid-item">
+                            <h5>Nome do Jogo</h5>
+                            <p>${jogo.nome}</p>
+                            <h6>Preço</h6>
+                            <p>R$ ${jogo.preco}</p>
+                            <h6>Ano de Lançamento</h6>
+                            <p>${jogo.ano}</p>
+                            <h6>Criador</h6>
+                            <p>${jogo.criador}</p>
+                            <button class="btn btn-warning btn-crud" onclick="editarJogo(${index})">Editar</button>
+                            <button class="btn btn-danger btn-crud" onclick="excluirJogo(${index})">Excluir</button>
+                        </div>
+                    `;
+                    container.appendChild(item);
+                });
+            }
+
+            // Função para editar um jogo
+            window.editarJogo = function (index) {
+                // Recupera os dados do jogo selecionado
+                let jogo = jogos[index];
+                
+                // Preenche o formulário de cadastro com os dados do jogo
+                document.getElementById("itemNome").value = jogo.nome;
+                document.getElementById("itemPreco").value = jogo.preco;
+                document.getElementById("itemAno").value = jogo.ano;
+                document.getElementById("itemCriador").value = jogo.criador;
+
+                // Adiciona um campo oculto no localStorage para guardar o índice
+                localStorage.setItem("editarIndex", index);
+
+                // Atualiza a ação do formulário para salvar como atualização
+                let formCadastro = document.getElementById("formCadastro");
+                formCadastro.onsubmit = function (event) {
+                    event.preventDefault(); // Impede o envio do formulário
+
+                    // Atualiza os dados do jogo no array
+                    jogos[index] = {
+                        nome: document.getElementById("itemNome").value,
+                        preco: document.getElementById("itemPreco").value,
+                        ano: document.getElementById("itemAno").value,
+                        criador: document.getElementById("itemCriador").value
+                    };
+
+                    // Salva novamente no localStorage
+                    localStorage.setItem("jogos", JSON.stringify(jogos));
+                    
+                    // Volta para a página de jogos cadastrados
+                    window.location.href = "jogos-cadastrados.html";
+                };
+            };
+
+            // Função para excluir um jogo
+            window.excluirJogo = function (index) {
+                if (confirm("Tem certeza de que deseja excluir este jogo?")) {
+                    // Remove o jogo do array
+                    jogos.splice(index, 1);
+                    
+                    // Atualiza o localStorage
+                    localStorage.setItem("jogos", JSON.stringify(jogos));
+                    
+                    // Re-renderiza a lista de jogos
+                    renderizarJogos();
+                }
+            };
+
+            renderizarJogos(); // Inicializa a exibição dos jogos
+        });
+    </script>
+</body>
+</html>
