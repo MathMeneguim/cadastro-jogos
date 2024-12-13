@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Cadastro de Item</title>
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="./assets/css/global/global.css">
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">Cadastro de Jogos</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="#">Início</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="./jogos-cadastrados.html">Jogos Cadastrados</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+	<div class="container w-50">
+		<h2 class="text-center">Cadastro de Jogos</h2>
+
+		<form id="formCadastro" onsubmit="return validarFormulario()">
+
+			<div class="form-group">
+				<label>Nome do Jogo:</label>
+				<input type="text" class="form-control" id="itemNome" placeholder="Digite o nome do jogo" required>
+				<div class="invalid-feedback" id="nomeError"></div>
+			</div>
+
+			<div class="form-group">
+				<label>Preço:</label>
+				<input type="number" class="form-control" id="itemPreco" placeholder="Digite o preço do jogo" required>
+				<div class="invalid-feedback" id="precoError"></div>
+			</div>
+
+			<div class="form-group">
+				<label>Ano de lançamento:</label>
+				<select class="form-control" id="itemAno" required >
+					<option value="">Selecione uma opção</option>
+					<option value="90s">90s</option>
+					<option value="80s">80s</option>
+					<option value="70s">70s</option>
+					<option value="60s">60s</option>
+					<option value="50s">50s</option>
+				</select>
+				<div class="invalid-feedback" id="anoError"></div>
+			</div>
+
+			<div class="form-group">
+				<label for="itemCriador">Criador:</label>
+				<input type="text" class="form-control" id="itemCriador" placeholder="Digite o nome do criador" required>
+				<div class="invalid-feedback" id="criadorError"></div>
+			</div>
+
+			<button type="submit" class="btn btn-primary btn-block">Cadastrar Item</button>
+		</form>
+	</div>
+
+	<footer class="bg-dark text-white text-center py-3">
+		<p>&copy; 2024 Cadastro de Jogos. Todos os direitos reservados a MatheusGamer.</p>
+	</footer>
+
+	<!--bootstrap-->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+	<!-- my codes -->
+	<script src="./assets/js/tela-inicio.js"></script>
+
+</body>
+</html>
