@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 	function renderizarJogos() {
-		container.innerHTML = ""; // Limpar a lista antes de adicionar
+		container.innerHTML = ""; // Deixa zerado antes de adicionar
 		if (jogos.length === 0) {
 			noGamesMessage.innerHTML = `<h3 class="text-center">Nenhum jogo cadastrado</h3>`;
 		} else {
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		}
 	}
 
-	// Edição
+
 	window.editarJogo = function (index) {
 		const jogo = jogos[index];
 		document.getElementById("editNome").value = jogo.nome;
@@ -40,7 +40,6 @@ document.addEventListener("DOMContentLoaded", function () {
 		document.getElementById("editAno").value = jogo.ano;
 		document.getElementById("editCriador").value = jogo.criador;
 
-		// Salvar as alterações
 		document.getElementById("saveChangesButton").onclick = function () {
 			jogos[index] = {
 				nome: document.getElementById("editNome").value,
@@ -50,14 +49,13 @@ document.addEventListener("DOMContentLoaded", function () {
 			};
 			localStorage.setItem("jogos", JSON.stringify(jogos));
 			renderizarJogos();
-			$('#editGameModal').modal('hide'); // Fechar o modal
+			$('#editGameModal').modal('hide');
 		};
 
-		$('#editGameModal').modal('show'); // Abrir o modal
+		$('#editGameModal').modal('show');
 	};
 
 
-	// Exclusão
 	window.excluirJogo = function (index) {
 		if (confirm("Tem certeza de que deseja excluir este jogo?")) {
 			// Remove o jogo do array

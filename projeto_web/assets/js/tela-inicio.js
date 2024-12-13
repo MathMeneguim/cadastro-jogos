@@ -1,5 +1,4 @@
 function validarFormulario() {
-	let id = Math.random() * 100
 	let nome = document.getElementById("itemNome").value;
 	let preco = document.getElementById("itemPreco").value;
 	let ano = document.getElementById("itemAno").value;

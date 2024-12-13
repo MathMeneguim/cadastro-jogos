@@ -1,0 +1,11 @@
+.grid-item {
+	background-color: #f8f9fa;
+	border: 1px solid #dee2e6;
+	border-radius: 5px;
+	text-align: center;
+	padding: 20px;
+}
+
+.btn-crud {
+	margin-top: 10px;
+}
