@@ -4,19 +4,19 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Cadastro de Item</title>
-	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="./assets/css/global/global.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="./assets/css/global.css">
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">Cadastro de Jogos</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		<a class="navbar-brand" href="./index.html">Cadastro de Jogos</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarNav">
-			<ul class="navbar-nav ml-auto">
+			<ul class="navbar-nav ms-auto">
 				<li class="nav-item active">
-					<a class="nav-link" href="#">Início</a>
+					<a class="nav-link" href="./index.html">Início</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="./jogos-cadastrados.html">Jogos Cadastrados</a>
@@ -27,24 +27,20 @@
 
 	<div class="container w-50">
 		<h2 class="text-center">Cadastro de Jogos</h2>
-
-		<form id="formCadastro" onsubmit="return validarFormulario()">
-
-			<div class="form-group">
-				<label>Nome do Jogo:</label>
+		<form id="formCadastro" onsubmit="return validarFormulario()" novalidate>
+			<div class="mb-3">
+				<label for="itemNome" class="form-label">Nome do Jogo:</label>
 				<input type="text" class="form-control" id="itemNome" placeholder="Digite o nome do jogo" required>
 				<div class="invalid-feedback" id="nomeError"></div>
 			</div>
-
-			<div class="form-group">
-				<label>Preço:</label>
+			<div class="mb-3">
+				<label for="itemPreco" class="form-label">Preço:</label>
 				<input type="number" class="form-control" id="itemPreco" placeholder="Digite o preço do jogo" required>
 				<div class="invalid-feedback" id="precoError"></div>
 			</div>
-
-			<div class="form-group">
-				<label>Ano de lançamento:</label>
-				<select class="form-control" id="itemAno" required >
+			<div class="mb-3">
+				<label for="itemAno" class="form-label">Ano de lançamento:</label>
+				<select class="form-select" id="itemAno" required>
 					<option value="">Selecione uma opção</option>
 					<option value="90s">90s</option>
 					<option value="80s">80s</option>
@@ -54,27 +50,20 @@
 				</select>
 				<div class="invalid-feedback" id="anoError"></div>
 			</div>
-
-			<div class="form-group">
-				<label for="itemCriador">Criador:</label>
+			<div class="mb-3">
+				<label for="itemCriador" class="form-label">Criador:</label>
 				<input type="text" class="form-control" id="itemCriador" placeholder="Digite o nome do criador" required>
 				<div class="invalid-feedback" id="criadorError"></div>
 			</div>
-
-			<button type="submit" class="btn btn-primary btn-block">Cadastrar Item</button>
+			<button type="submit" class="btn btn-primary w-100">Cadastrar Item</button>
 		</form>
 	</div>
 
-	<footer class="bg-dark text-white text-center py-3">
+	<footer class="bg-dark text-white text-center py-3 mt-4">
 		<p>&copy; 2024 Cadastro de Jogos. Todos os direitos reservados a MatheusGamer.</p>
 	</footer>
 
-	<!--bootstrap-->
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-	<!-- my codes -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="./assets/js/tela-inicio.js"></script>
 
 </body>
